@@ -1,40 +1,122 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+
+<body>
+
+    <head>
+        <title>Blog App</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
     <body>
-<head>
-    <title>Blog App</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body >
-    
-<nav class="navbar navbar-light" style="background-color:gray;">
-    <!-- <a href="" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Blogs</a> -->
-    <a class="navbar-link btn-lg" href="{% url 'index' %}" style="background-color:#FFCC33;color:#000000;">Blogs</a>
-    <a href="{% url 'upload-post' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Add Blog</a>
-</nav>
-<br>
-<div class="container">
-{% block content %}
-<div class="card-columns">
-    {% for post in post %}
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{ post.title }}</h5>
-    <p class="card-text">{{ post.blog }}</p>
-   <div class="card-footer bg-transparent border-dark">
-   <p class="card-title">{{post.name}}</p>
-   <center>
-       <a href="update/{{post.id}}" class="btn btn-warning" id = '{{post.id}}'>edit</a>
-       <a href="delete/{{post.id}}" class="btn btn-danger" id = '{{post.id}}'>delete</a>
-    </center>
-    </div>
-  </div>
-</div>
-    {% endfor %}
-</div>
-{% endblock %}
-</div>
-</body>
+
+        <nav class="navbar navbar-light" style="background-color:gray;">
+            <!-- <a href="" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Blogs</a> -->
+            <a class="navbar-link btn-lg" href="{% url 'index' %}"
+                style="background-color:#FFCC33;color:#000000;">Blogs</a>
+            <a href="{% url 'upload-post' %}" class="navbar-link btn-lg"
+                style="background-color:#FFCC33;color:#000000;">Add Blog</a>
+            <a href="{% url 'register' %}" class="navbar-link btn-lg"
+                style="background-color:#FFCC33;color:#000000;">Register</a>
+            <a href="{% url 'login' %}" class="navbar-link btn-lg"
+                style="background-color:#FFCC33;color:#000000;">Login</a>
+        </nav>
+        <br>
+        <div class="container-fluid">
+            {% block content %}
+
+            <style>
+                body {
+                    font-family: "Roboto", sans-serif;
+                    font-size: 18px;
+
+                }
+
+                .head_text {
+                    color: white;
+                }
+
+                .card {
+                    box-shadow: 0 16px 48px #E3E7EB;
+                }
+            </style>
+
+            <!-- <header class="masthead">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class=" col-md-8 col-md-10 mx-auto">
+                            <div class="site-heading">
+                                <h3 class=" site-heading my-4 mt-3 text-black"> Welcome to my awesome Blog </h3>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="">
+                <div class="container">
+                    <div class="col-md-4">
+
+                    </div>
+                   
+                    <div class="col-md-8 mt-3 left ">
+                        {% for post in post %}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ post.title }}</h2>
+                                <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                                <p class="card-text">{{post.blog|slice:":200" }}</p>
+                                <center>
+                                    
+                                    <a href="update/{{post.id}}" class="btn btn-warning" id='{{post.id}}'>edit</a>
+                                    <a href="delete/{{post.id}}" class="btn btn-danger" id='{{post.id}}'>delete</a>
+                                </center>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+ -->
+
+            <div class="card-columns">
+                {% for post in post %}
+                <div class="card" style="height: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{post.blog|slice:":200" }}</p>
+                        <div class="card-footer bg-transparent border-dark">
+
+                            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+
+                            <center>
+                                <a href="#" class="btn btn-primary"> More &rarr;</a>
+                                <a href="update/{{post.id}}" class="btn btn-warning" id='{{post.id}}'>edit</a>
+                                <a href="delete/{{post.id}}" class="btn btn-danger" id='{{post.id}}'>delete</a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <footer class="page-footer font-small white" style="background-color:gray;">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="/" style="color: white;"> jerumanu.com</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        {% endblock %}
+
+    </body>
+
 </html>
