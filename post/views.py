@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     post = Post.objects.all()
-    return render(request, 'post/blog.html', {'post': post})
+    return render(request, 'post/post.html', {'post': post})
 
 def register(request):
     if request.method == 'POST':
