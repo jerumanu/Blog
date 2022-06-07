@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <body>
+<head>
+    <title>Blog App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body >
+    
+<nav class="navbar navbar-light" style="background-color:gray;">
+    <!-- <a href="" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Blogs</a> -->
+    <a class="navbar-link btn-lg" href="{% url 'index' %}" style="background-color:#FFCC33;color:#000000;">Blogs</a>
+    <a href="{% url 'upload-post' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Add Blog</a>
+</nav>
+<br>
+<div class="container">
+{% block content %}
+<div class="card-columns">
+    {% for post in post %}
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.blog }}</p>
+   <div class="card-footer bg-transparent border-dark">
+   <p class="card-title">{{post.name}}</p>
+   <center>
+       <a href="update/{{post.id}}" class="btn btn-warning" id = '{{post.id}}'>edit</a>
+       <a href="delete/{{post.id}}" class="btn btn-danger" id = '{{post.id}}'>delete</a>
+    </center>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</div>
+</body>
+</html>
