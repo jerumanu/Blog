@@ -9,4 +9,9 @@ from .models import *
 class PostCreate(forms.ModelForm):
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('title', 'blog',)
+
+    widget = {
+        'title':forms.TextInput(attrs={'class':'form control' ,'style': 'max-width: 300px;','placeholder': 'Title'}),
+        'blog':forms.Textarea(attrs={'class':'form control','style': 'max-width: 300px;','cols': 80, 'rows': 3 })
+    }    

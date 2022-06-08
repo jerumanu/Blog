@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
 from .forms import *
 from django.http import HttpResponse
@@ -31,36 +32,40 @@ def register(request):
 
 
 
-
+@login_required(login_url='/login/')
 def upload(request):
-    upload = PostCreate()
-    if request.method == 'POST':
-        upload = PostCreate(request.POST, request.FILES)
-        if upload.is_valid():
-            upload.save()
+    if request.method == "POST":
+        form = PostCreate(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
             return redirect('index')
-        else:
-            return HttpResponse("""your form is wrong, reload on <a href = "{{ url : 'index'}}">reload</a>""")
     else:
-        return render(request, 'post/upload_form.html', {'upload_form':upload})
+        form = PostCreate()
+    return render(request, 'post/upload_form.html', {'form': form})
+  
 
-
-
+@login_required(login_url='/login/')
 def update_post(request, post_id):
-    post_id = int(post_id)
-    try:
-        post_sel = Post.objects.get(id = post_id)
-    except Post.DoesNotExist:
-        return redirect('index')
-    post_form = PostCreate(request.POST or None, instance = post_sel)
-    if post_form.is_valid():
-       post_form.save()
-       return redirect('index')
-    return render(request, 'post/upload_form.html', {'upload_form':post_form})
+    post = get_object_or_404(Post,  id=post_id)
+    if request.method == "POST":
+        form =  PostCreate(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            
+            post.published_date = timezone
+            post.save()
+            return redirect('index',   id=post_id)
+    else:
+        form =  PostCreate(instance=post)
+    
+    return render(request, 'post/upload_form.html', {'form': form})
 
-
-def delete_post(request, post_id):
-    post_id = int(post_id)
+# @login_required(login_url='/login/')
+def delete_post(request,  post_id):
+    post_sel = int( post_id)
     try:
         post_sel = Post.objects.get(id = post_id)
     except Post.DoesNotExist:
