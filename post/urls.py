@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('index', views.index, name='index'),
     path('upload/', views.upload, name = 'upload-post'),
     path('update/<int:post_id>', views.update_post  , name = 'update-post'),
     path('delete/<int:pk>', views.delete_post),
