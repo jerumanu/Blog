@@ -1,4 +1,5 @@
 
+from collections import UserList
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
 from .forms import *
@@ -15,6 +16,14 @@ def index(request):
     post = Post.objects.all()
     return render(request, 'post/post.html', {'post': post})
 
+# def home(request):
+#     post = Post.objects.all()
+        
+#     def get_queryset(self):
+#         user = self.request.user
+#         post = Post.objects.filter(user=user).values_list('post', flat=True)
+        
+#     return render(request, 'post/blog.html', {'post': post})
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -31,6 +40,9 @@ def register(request):
 
 
 
+
+
+    
 
 @login_required(login_url='/login/')
 def upload(request):
@@ -49,22 +61,22 @@ def upload(request):
 
 @login_required(login_url='/login/')
 def update_post(request, post_id):
-    post = get_object_or_404(Post,  id=post_id)
-    if request.method == "POST":
-        form =  PostCreate(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            
-            post.published_date = timezone
-            post.save()
-            return redirect('index',   id=post_id)
-    else:
-        form =  PostCreate(instance=post)
+  
+    post_id = int(post_id)
+    try:
+        post_sel = Post.objects.get(id = post_id)
+    except Post.DoesNotExist:
+        return redirect('index')
+    post_form = PostCreate(request.POST or None, instance = post_sel)
+    if post_form.is_valid():
+       post_form.save()
+       return redirect('index')
     
-    return render(request, 'post/upload_form.html', {'form': form})
+    return render(request, 'post/upload_form.html', {'form': post_form})
 
-# @login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def delete_post(request,  post_id):
+    
     post_sel = int( post_id)
     try:
         post_sel = Post.objects.get(id = post_id)

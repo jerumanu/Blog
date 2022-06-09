@@ -7,7 +7,7 @@ from django.utils import timezone
 class Post(models.Model):
     title=models.CharField(max_length=100)
     
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE )
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='blog_posts')  
 
     updated_on = models.DateTimeField(auto_now= True)
     blog= models.TextField()

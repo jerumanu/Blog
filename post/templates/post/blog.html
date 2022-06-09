@@ -1,79 +1,29 @@
-<!DOCTYPE html>
-{% load static %}
-<html>
 
-<body>
+{% block content %}
+<div class="card-columns">
 
-    <head>
-        <title>Blog App</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
+    {% for post in posts %}
+{% if user.id == post.author.id%}
+    <div class="card" style="height: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }} </h5>
+            <p class="card-text">{{post.blog|slice:":200" }}</p>
+            <div class="card-footer bg-transparent border-dark">
 
-    <body>
+                <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
 
-        <nav class="navbar navbar-light" style="background-color:gray;">
-            <!-- <a href="" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Blogs</a> -->
-            <a class="navbar-link btn-lg" href="{% url 'index' %}"
-                style="color:#000000;">Blogs</a>
-            <a href="{% url 'upload-post' %}" class="navbar-link btn-lg"
-                style="color:#000000;">Add Post</a>
-            <a href="{% url 'register' %}" class="navbar-link btn-lg"
-                style="color:#000000;">Register</a>
-            <a href="{% url 'login' %}" class="navbar-link btn-lg"
-                style="color:#000000;">Login</a>
-        </nav>
-        <br>
-        <div class="container-fluid">
-            {% block content %}
+                <center>
+                    
+                    <a href="#" class="btn btn-primary"> More &rarr;</a>
+                    <a href=" update/{{post.id}}  " class="btn btn-warning" id='{{post.id}}'>edit</a>
+                    <a href="delete/{{post.id}}" class="btn btn-danger" id='{{post.id}}'>delete</a>
 
-            <style>
-                body {
-                    font-family: "Roboto", sans-serif;
-                    font-size: 18px;
-
-                }
-
-                .head_text {
-                    color: white;
-                }
-
-                .card {
-                    box-shadow: 0 16px 48px #E3E7EB;
-                }
-            </style>
-            <div class="card-columns">
-                {% for post in post %}
-                <div class="card" style="height: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                        <p class="card-text">{{post.blog|slice:":200" }}</p>
-                        <div class="card-footer bg-transparent border-dark">
-
-                            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
-
-                            <center>
-                                <a href="#" class="btn btn-primary"> More &rarr;</a>
-                                <a href="update/{{post.id}}" class="btn btn-warning" id='{{post.id}}'>edit</a>
-                                <a href="delete/{{post.id}}" class="btn btn-danger" id='{{post.id}}'>delete</a>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+                   
+                </center>
+                 {% endif%}
             </div>
         </div>
-        <footer class="page-footer font-small white" style="background-color:gray;">
-
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2020 Copyright:
-                <a href="/" style="color: white;"> jerumanu.com</a>
-            </div>
-            <!-- Copyright -->
-
-        </footer>
-        {% endblock %}
-
-    </body>
-
-</html>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
