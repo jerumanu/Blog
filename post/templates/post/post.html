@@ -16,23 +16,28 @@
                     {% if user.id == post.author.id%}
                     <a href="#" class="btn btn-primary"> More &rarr;</a>
                     <a href=" update/{{post.id}}  "class="btn btn-warning"  id='{{post.id}}'>edit</a>
-                    <button href="delete/{{post.id}}"  onclick="document.getElementById('id01').style.display='block'"class="btn btn-danger"   id='{{post.id}}'>delete</button>
+                    <button href="delete/{{post.id}}"type="button" data-toggle="modal" data-target="#exampleModalCenter " class="btn btn-danger"   id='{{post.id}}'>delete</button>
                    
-                    <div id="id01" class="modal">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-                        <form class="modal-content" action="/action_page.php">
-                            <div class="container">
-                            
-                                <p>Are you sure you want to delete your Blog?</p>
-                    
-                                <div class="clearfix">
-                                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                        class="cancelbtn btn btn-secondary">Cancel</button>
-                                    <a href="delete/{{post.id}}"   class="btn btn-danger deletebtn"   id='{{post.id}}'class="">Delete</a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">{{ post.title }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                   <p> Are you sure you want to delete your Blog?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a type="button" href="delete/{{post.id}}"  id='{{post.id}}' class="btn btn-danger">delete</a>
                                 </div>
                             </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 
                 {% endif%}
