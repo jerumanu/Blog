@@ -16,10 +16,29 @@
                     {% if user.id == post.author.id%}
                     <a href="#" class="btn btn-primary"> More &rarr;</a>
                     <a href=" update/{{post.id}}  "class="btn btn-warning"  id='{{post.id}}'>edit</a>
-                    <a href="delete/{{post.id}}" class="btn btn-danger" id='{{post.id}}'>delete</a>
+                    <button href="delete/{{post.id}}"  onclick="document.getElementById('id01').style.display='block'"class="btn btn-danger"   id='{{post.id}}'>delete</button>
+                   
+                    <div id="id01" class="modal">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                        <form class="modal-content" action="/action_page.php">
+                            <div class="container">
+                            
+                                <p>Are you sure you want to delete your Blog?</p>
+                    
+                                <div class="clearfix">
+                                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                                        class="cancelbtn btn btn-secondary">Cancel</button>
+                                    <a href="delete/{{post.id}}"   class="btn btn-danger deletebtn"   id='{{post.id}}'class="">Delete</a>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
                 
                 {% endif%}
                 </center>
+                <script
+                    type="text/javascript">window.mytest = function () { var isValid = confirm('Are you sure ?'); if (!isValid) { event.preventDefault(); alert("It wont delete. Yay!"); } }</script>
             </div>
         </div>
     </div>
