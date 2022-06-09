@@ -2,8 +2,8 @@
 
 <div class="container">
     <div class="row align-items-center mt-5">
-      <div class="col-6 mx-auto  ">
-        <div class="card  d-flex flex-column align-items-center  pt-2 bg-light" style="width: 25rem;">
+      <div class="col-6 mx-auto  mt-5 ">
+        <div class="card  d-flex flex-column align-items-center   pt-5 bg-light" style="width: 25rem;">
         <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="form-group">
@@ -31,4 +31,5 @@
   </div>
   </div>
 
-{% endblock %}
+{% endblock content %}
+{% include 'footer.html' %}

@@ -1,29 +1,101 @@
-
+{% extends 'base.html' %}
 {% block content %}
-<div class="card-columns">
+<div class="container-fluid ">
+<div class="container">
+    <div class="card-columns">
 
-    {% for post in posts %}
-{% if user.id == post.author.id%}
-    <div class="card" style="height: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{ post.title }} </h5>
-            <p class="card-text">{{post.blog|slice:":200" }}</p>
-            <div class="card-footer bg-transparent border-dark">
+        {% for post in post %}
+        
+        <div class="card" style="height: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }} </h5>
+                <p class="card-text">{{post.blog|slice:":200" }}</p>
+                <div class="card-footer bg-transparent border-dark">
 
-                <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
 
-                <center>
+                    <center>
+                     
+                        <!-- <a href=" update/{{post.id}}  " class="btn btn-warning" id='{{post.id}}'>edit</a>
+                        <button href="delete/{{post.id}}" type="button" data-toggle="modal"
+                            data-target="#exampleModalCenter " class="btn btn-danger pt-2"
+                            id='{{post.id}}'>delete</button> -->
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle"> hey {{ post.author }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p> Are you sure you want to delete your Blog?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <a type="button" href="delete/{{post.id}}" id='{{post.id}}'
+                                            class="btn btn-danger">delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </center>
                     
-                    <a href="#" class="btn btn-primary"> More &rarr;</a>
-                    <a href=" update/{{post.id}}  " class="btn btn-warning" id='{{post.id}}'>edit</a>
-                    <a href="delete/{{post.id}}" class="btn btn-danger" id='{{post.id}}'>delete</a>
-
-                   
-                </center>
-                 {% endif%}
+                    
+                </div>
+                
             </div>
         </div>
-    </div>
     {% endfor %}
+    </div>
 </div>
+
+    <footer class="bg-dark text-center text-white  ">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-linkedin-in"></i></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fab fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="#">jerumanu.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</div>
+
 {% endblock content %}

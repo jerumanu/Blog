@@ -16,14 +16,10 @@ def index(request):
     post = Post.objects.all()
     return render(request, 'post/post.html', {'post': post})
 
-# def home(request):
-#     post = Post.objects.all()
-        
-#     def get_queryset(self):
-#         user = self.request.user
-#         post = Post.objects.filter(user=user).values_list('post', flat=True)
-        
-#     return render(request, 'post/blog.html', {'post': post})
+def mypost(request):
+    post = Post.objects.all()
+    return render(request, 'post/blog.html', {'post': post})
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

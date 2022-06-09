@@ -6,6 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('home/', views.mypost, name='home'),
     
     path('upload/', views.upload, name = 'upload-post'),
     path('update/<int:post_id>', views.update_post  ),
