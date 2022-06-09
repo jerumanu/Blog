@@ -1,7 +1,7 @@
 {% block content %}
 
-<div class="container-fluid mb-3">
-<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
+
+<nav class="navbar navbar-expand-lg navbar-light mb-3" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="{% url 'home' %}">Blog Application</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -12,11 +12,11 @@
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
       </li>
-        <li class="nav-item">
+        <li class="nav-item active">
         
-          <a class="nav-link " href="{% url 'upload-post' %}">Add Post</a>
+          <a class="nav-link active" href="{% url 'upload-post' %}">Add Post</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item  ">
         
           <a class="nav-link " href="{% url 'index' %}">my post</a>
         </li>
@@ -41,6 +41,6 @@
     </ul>
   </div>
 </nav>
-</div>
+
 {% endblock content %}
 {% include 'footer.html' %}

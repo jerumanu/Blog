@@ -2,11 +2,11 @@
 {% block content %}
 <div class="container-fluid">
 <div class="container">
-    <div class="card-columns">
+    <div class="card-columns ">
 
         {% for post in post %}
         
-        <div class="card" style="height: 18rem;">
+        <div class="card " style="height: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ post.title }} </h5>
                 <p class="card-text">{{post.blog|slice:":200" }}</p>
@@ -55,9 +55,8 @@
     {% endfor %}
     </div>
 </div>
-{% endblock content %}
-
-    <footer class="bg-dark text-center text-white  ">
+<div class="container-fluid pt-20">
+    <footer class="bg-dark text-center text-white ">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Social media -->
@@ -97,6 +96,6 @@
         </div>
         <!-- Copyright -->
     </footer>
-
 </div>
-
+</div>
+{% endblock content %}
