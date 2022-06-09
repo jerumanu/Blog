@@ -12,6 +12,6 @@ class PostCreate(forms.ModelForm):
         fields = ('title', 'blog',)
 
     widget = {
-        'title':forms.TextInput(attrs={'class':'form control' ,'style': 'max-width: 300px;','placeholder': 'Title'}),
-        'blog':forms.Textarea(attrs={'class':'form control','style': 'max-width: 300px;','cols': 80, 'rows': 3 })
+        'title':forms.TextInput(attrs={'class':'form control' }),
+        'blog':forms.Textarea(attrs={'class':'form control' })
     }    

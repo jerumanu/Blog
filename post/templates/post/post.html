@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container">
 <div class="card-columns">
    
     {% for post in post %}
@@ -14,9 +15,8 @@
 
                 <center>
                     {% if user.id == post.author.id%}
-                    <a href="#" class="btn btn-primary"> More &rarr;</a>
                     <a href=" update/{{post.id}}  "class="btn btn-warning"  id='{{post.id}}'>edit</a>
-                    <button href="delete/{{post.id}}"type="button" data-toggle="modal" data-target="#exampleModalCenter " class="btn btn-danger"   id='{{post.id}}'>delete</button>
+                    <button href="delete/{{post.id}}"type="button" data-toggle="modal" data-target="#exampleModalCenter " class="btn btn-danger pt-2"   id='{{post.id}}'>delete</button>
                    
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -48,5 +48,6 @@
         </div>
     </div>
     {% endfor %}
+</div>
 </div>
 {% endblock content %}
