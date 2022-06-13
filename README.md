@@ -22,7 +22,7 @@ This is web application that allow usesrs to view and post blog  delete blog tah
 
 * Get the project
 - Clone this repository
-   
+   * git clone git@github.com:jerumanu/Blog.git
 
 * Install and activate Virtual
 - python3 -m venv virtual
