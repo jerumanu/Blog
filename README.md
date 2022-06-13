@@ -1,85 +1,61 @@
-{% if False %}
+# Blog
 
-# Introduction
+## Author
+* By Emmanuel Cheriyot 
 
-The goal of this project is to provide  users to post blog , edit  blog and to read blog post by other users .
+## Description
+This is web application that allow usesrs to view and post blog  delete blog taht does not impress other users
 
-BLOG APP is written with django 4.o.5 and python 3.10 in mind.
+## Feature
+* User is able to sign up and login the application
+* User is able to view different blogs 
+* User can create or upload blog
+* Create blog that will be visible to everyon
+*  User can delete or update  blog
+## Behaviour Driven Development
+| Input | Output|
+|-------| ------|
+| User sign up to create ,ubdate , delete and view thier own posted  blog 
+| Users sees the posted  blog
 
-### Main features
+## Setup and Installations
 
-* Separated dev and production settings
+* Get the project
+- Clone this repository
+   
 
-* Example app with custom user model
+* Install and activate Virtual
+- python3 -m venv virtual
+- source virtual/bin/activate
 
-* Bootstrap static files included
+* Navigate into the folder
+- cd  Blog
 
-* User registration and logging in as demo
+* Install Dependencies
+- pip install -r requirements.txt
 
-* Procfile for easy deployments
+* Setup Database
+    - SetUp your database User,Password, Host then make migrations:
+    - python manage.py makemigrations
+    - python manage.py migrate
 
-* Separated requirements files
+* Run application
+    - python manage.py runserver
 
-* Postgresql for database
+* Testing the application
+    - python manage.py test
 
-# Usage
+## Technology Used
 
-For users to read an  post blog
+* Python3.10
+* Django 3.2.1
+* Heroku
 
-### Existing virtualenv
+## Known Bugs
+* There are no known bugs at the moment
 
-If your project is already in an existing python3 virtualenv first install django by running
 
-    pip install django
+## Copyright and License
 
-And then run the `django-admin` command to start the new project:
-
-    $ django-admin startproject . \
-      --Blog app=https://github.com/jerumanu/Blog.git \
-      --extension=py,md \
-      <blog>
-
-### No virtualenv
-
-This assumes that `python3` is linked to valid installation of python 3 and that `pip` is installed and `pip3`is valid
-for installing python 3 packages.
-
-Installing inside virtualenv is recommended, however you can start your project without virtualenv too.
-
-If you don't have django installed for python 3 then run:
-
-    pip3 install django
-
-And then:
-
-    $ python3 -m django startproject \
-      ----Blog-app =https://github.com/jerumanu/Blog.git \
-      --extension=py,md \
-      <blog >
-
-After that just install the local dependencies, run migrations, and start the server.
-
-{% endif %}
-
-# {{ Blog App|title }}
-
-# Getting Started
-
-First clone the repository from Github and switch to the new directory:
-
-    git clone https://github.com/jerumanu/Blog.git \
-    cd {{ BLOG }}
-
-Activate the virtualenv for your project.
-
-Install project dependencies:
-
-    pip install -r requirements.txt
-
-Then simply apply the migrations:
-
-    python manage.py migrate
-
-You can now run the development server:
-
-    python manage.py runserver
+The project is under[MIT license](/blob/master/LICENSE)
+Copyright &copy; 2022.All rigths reserved
